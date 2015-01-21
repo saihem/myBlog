@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load django_markdown %}
+
+{% block navi %}
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="{% url "index" %}">Home</a>
+          <a class="blog-nav-item" href="{% url "tasks" %} ">Tasks</a>
+          <a class="blog-nav-item active" href="{% url "about" %}">About</a>
+        </nav>
+      </div>
+    </div>
+{% endblock navi %}
+
+{% block title%} 
+	<section> How this blog works
+	</section>
+{% endblock %}
+
+{% block content %}
+	<h2 class="about"> How this Blog Works</h2>
+	<section> 
+	<p class="about-content"> Everytime something important happens it will be updated in the Tasks page. </p> </section>
+{% endblock %}
+
+{% block blog_entries %}
+{% for object in object_list %}
+  
+{% endfor %}
+{% endblock %}

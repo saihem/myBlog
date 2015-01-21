@@ -1,3 +1,43 @@
+{% extends "base.html" %}
+{% load django_markdown %}
+
+{% block navi %}
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="{% url "index" %}">Home</a>
+          <a class="blog-nav-item active" href="{% url "tasks" %}">Tasks</a>
+          <a class="blog-nav-item" href="{% url "about" %}">About</a>
+        </nav>
+      </div>
+    </div>
+{% endblock navi %}
+
+
+{% block content %} 
+<section> 
+    <h2>  <u> Ongoing Projects </u> </h2>
+</section>
+{% endblock %}
+
+{% block blog_entries %}
+{% for object in object_list %}
+
+  <div class="post">
+      <h2><a href="{% url "task_detail" slug=object.slug %}">{{ object.title }}</a></h2>
+    <p class="meta">
+      {{ object.created }} |
+      Tagged under {{  object.tags.all|join:", " }}
+    </p>
+    {{ object.body|markdown }}
+  </div>
+{% endfor %}
+
+{% endblock %}
+
+<!-- wait
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +45,11 @@
     <meta charset="utf-8">
     <title>Styles Conference</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
   </head>
 
-  <body>
+  <body> 
 
-    <!-- Header -->
+    <!-- Head
 
     <header class="primary-header container group">
 
@@ -29,7 +68,7 @@
     </header>
 
    
-    <!-- Main content -->
+    Main content
   	<section class= "row-alt">
    	 	<div class="lead container">
     	
@@ -38,11 +77,11 @@
     	</div>
     </section>
 
-    <!-- Details -->
+    <!-- Details 
 
         <section class="col-2-3">
 
-          <h2>#1/h2>
+          <h2>#1</h2>
           <h5>$99 per Pass</h5>
 
           
@@ -50,7 +89,7 @@
           <h4>Coming Soon: </h4>
       
 
-    <!-- Footer -->
+    <!-- Footer 
 
     <footer class="container">
 
@@ -63,4 +102,5 @@
     </footer>
 
   </body>
-</html>
+</html> 
+-->

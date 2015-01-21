@@ -29,7 +29,31 @@ class Entry(models.Model):
     def get_absolute_url(self):
         return reverse("entry_detail", kwargs={"slug": self.slug})
 
+# orders the data by date created
     class Meta:
         verbose_name = "Blog Entry"
         verbose_name_plural = "Blog Entries"
+        ordering = ["-created"]
+
+class Task(models.Model):
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    slug = models.SlugField(max_length=200, unique=True)
+    publish = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    tags = models.ManyToManyField(Tag)
+
+    objects = EntryQuerySet.as_manager()
+
+    def __str__(self):     #unicode
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("tasks_detail", kwargs={"slug": self.slug})
+
+# orders the data by date created
+    class Meta:
+        verbose_name = "Task Entry"
+        verbose_name_plural = "Task Entries"
         ordering = ["-created"]
